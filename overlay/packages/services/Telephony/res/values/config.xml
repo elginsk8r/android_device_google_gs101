@@ -36,4 +36,7 @@
          This is done mainly to avoid placing emergency calls over CROSS SIM when even
          though it's the default voice SIM. -->
     <bool name="config_gnss_supl_requires_default_data_for_emergency">true</bool>
+
+    <!-- The package name for the platform carrier config app, bundled with system image. -->
+    <string name="platform_carrier_config_package" translatable="false">com.google.android.carrier</string>
 </resources>
