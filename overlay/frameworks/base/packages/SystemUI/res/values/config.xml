@@ -43,4 +43,8 @@
 
     <string name="proximity_sensor_secondary_type" translatable="false">android.sensor.proximity</string>
     <item name="proximity_sensor_secondary_threshold" translatable="false" format="float" type="dimen">5</item>
+
+    <!-- Should we vibrate on an icon animation of the shelf. This should only be active if the
+     vibrator is capable of subtle vibrations -->
+    <bool name="config_vibrateOnIconAnimation">true</bool>
 </resources>
