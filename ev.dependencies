@@ -1,0 +1,120 @@
+[
+  {
+    "repository": "android_kernel_google_gs101",
+    "target_path": "kernel/google/gs101/private/gs-google"
+  },
+  {
+    "repository": "kernel/devices/google/bluejay"
+    "target_path": "kernel/google/gs101/private/devices/google/bluejay"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/amplifiers" 
+    "target_path": "kernel/google/gs101/private/google-modules/amplifiers"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/aoc" 
+    "target_path": "kernel/google/gs101/private/google-modules/aoc"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/aoc-ipc" 
+    "target_path": "kernel/google/gs101/private/google-modules/aoc_ipc"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/bluetooth/broadcom" 
+    "target_path": "kernel/google/gs101/private/google-modules/bluetooth/broadcom"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/bms" 
+    "target_path": "kernel/google/gs101/private/google-modules/bms"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/display" 
+    "target_path": "kernel/google/gs101/private/google-modules/display"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/edgetpu/abrolhos" 
+    "target_path": "kernel/google/gs101/private/google-modules/edgetpu/abrolhos"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/fingerprint/fpc" 
+    "target_path": "kernel/google/gs101/private/google-modules/fingerprint/fpc"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/gpu" 
+    "target_path": "kernel/google/gs101/private/google-modules/gpu"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/lwis" 
+    "target_path": "kernel/google/gs101/private/google-modules/lwis"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/nfc" 
+    "target_path": "kernel/google/gs101/private/google-modules/nfc"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/power/reset" 
+    "target_path": "kernel/google/gs101/private/google-modules/power/reset"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "target_path": "kernel/google/gs101/private/google-modules/sensors/hall_sensor"
+    "repository": "kernel/google-modules/sensors/hall_sensor" 
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/touch/common" 
+    "target_path": "kernel/google/gs101/private/google-modules/touch/common"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/touch/fts_touch" 
+    "target_path": "kernel/google/gs101/private/google-modules/touch/fts"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/touch/sec_touch" 
+    "target_path": "kernel/google/gs101/private/google-modules/touch/sec"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/uwb" 
+    "target_path": "kernel/google/gs101/private/google-modules/uwb"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  },
+  {
+    "repository": "kernel/google-modules/wlan/bcmdhd/bcm4389" 
+    "target_path": "kernel/google/gs101/private/google-modules/wlan/bcmdhd4389"
+    "remote": "aosp",
+    "branch": "refs/tags/android-13.0.0_r0.5"
+  }
+]
