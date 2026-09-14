@@ -168,8 +168,19 @@ BOARD_SUPER_PARTITION_ERROR_LIMIT := 8111783936
 
 # Device Tree
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_PREBUILT_DTBIMAGE_DIR := $(TARGET_KERNEL_DIR)
-BOARD_PREBUILT_DTBOIMAGE := $(BOARD_PREBUILT_DTBIMAGE_DIR)/dtbo.img
+
+# Kernel
+BOARD_KERNEL_IMAGE_NAME := Image.lz4
+BOARD_KERNEL_SEPARATED_DTBO := true
+TARGET_KERNEL_PLATFORM_TARGET := $(TARGET_BOARD_PLATFORM)_$(DEVICE_CODENAME)
+TARGET_KERNEL_SOURCE := private/devices/google/$(DEVICE_CODENAME)
+TARGET_KERNEL_VERSION := 6.1
+TARGET_KERNEL_BAZEL_FLAGS := \
+    --//common:kernel_package=gki \
+    --//common:kernel_package_use_prebuilt_kernel \
+    --//private/devices/google/common:kernel=//$(TARGET_KERNEL_SOURCE):$(DEVICE_CODENAME)/kernel \
+    --//private/devices/google/common:use_prebuilt_fips140 \
+    --//private/google-modules/soc/gs:gs_soc_module=//private/devices/google/$(TARGET_BOARD_PLATFORM):$(TARGET_BOARD_PLATFORM)_soc
 
 BOARD_USES_METADATA_PARTITION := true
 
@@ -192,44 +203,6 @@ BOARD_DTBOIMG_PARTITION_SIZE := 0x01000000
 
 # Vendor ramdisk image for kernel development
 BOARD_BUILD_VENDOR_RAMDISK_IMAGE := true
-
-KERNEL_MODULE_DIR := $(TARGET_KERNEL_DIR)
-KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/*.ko)
-
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(KERNEL_MODULE_DIR)/vendor_dlkm.modules.blocklist
-
-# Since Pixel 6/6pro doesn't have a system_dlkm partition, the GKI modules are
-# on the vendor_dlkm partition. In order to allow them to load properly, we
-# need to retain the module signature which would normally get stripped during
-# packaging. Disable stripping the vendor_dlkm modules to retain the GKI
-# modules' signature. Note, the pixel kernel builds always strip the modules in
-# favor of saving space via the kleaf property: strip_modules = True.
-BOARD_DO_NOT_STRIP_VENDOR_MODULES := true
-
-# Prebuilt kernel modules that are *not* listed in vendor_boot.modules.load
-BOARD_PREBUILT_VENDOR_RAMDISK_KERNEL_MODULES = fips140.ko
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_EXTRA = $(foreach k,$(BOARD_PREBUILT_VENDOR_RAMDISK_KERNEL_MODULES),$(if $(wildcard $(KERNEL_MODULE_DIR)/$(k)), $(k)))
-
-# Kernel modules that are listed in vendor_boot.modules.load
-# Starting from 6.1, use modules.load instead. It lists modules for vendor ramdisk regardless of the partition name.
-ifneq ($(wildcard $(KERNEL_MODULE_DIR)/modules.load),)
-    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_FILE := $(strip $(shell cat $(KERNEL_MODULE_DIR)/modules.load))
-else
-    BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_FILE := $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_boot.modules.load))
-endif
-ifndef BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_FILE
-$(error vendor_boot.modules.load not found or empty)
-endif
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_EXTRA)
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD += $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_FILE)
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES := $(addprefix $(KERNEL_MODULE_DIR)/, $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_EXTRA))
-BOARD_VENDOR_RAMDISK_KERNEL_MODULES += $(addprefix $(KERNEL_MODULE_DIR)/, $(notdir $(BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD_FILE)))
-
-BOARD_VENDOR_KERNEL_MODULES_LOAD += $(strip $(shell cat $(KERNEL_MODULE_DIR)/vendor_dlkm.modules.load))
-ifndef BOARD_VENDOR_KERNEL_MODULES_LOAD
-$(error vendor_dlkm.modules.load not found or empty)
-endif
-BOARD_VENDOR_KERNEL_MODULES += $(KERNEL_MODULES)
 
 # SEPolicy
 BOARD_VENDOR_SEPOLICY_DIRS += \
